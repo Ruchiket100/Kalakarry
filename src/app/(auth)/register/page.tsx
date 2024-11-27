@@ -7,11 +7,13 @@ import Link from "next/link";
 import { useMutation } from "react-query";
 import Password from "@/components/interactives/password";
 import { toast } from "react-toastify";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
+import { useAtom } from "jotai";
+import { cloudAtom } from "@/utils/store";
 
 export default function RegisterPage() {
     const [data, setData] = useState({email:'', password:'', name:''});
-
+    const [ cloud, setCloud]= useAtom(cloudAtom)
     const router =  useRouter();
 
     const registerUser  = useMutation({
@@ -25,16 +27,17 @@ export default function RegisterPage() {
             router.push(`/auth-login?token=${data.token}`);
         }
     })
-
+    console.log(cloud)
     return (
         <div className=" min-h-screen min-w-screen flex flex-col items-center justify-center">
             <div className="flex flex-col items-center gap-1">
-            <h1 className="text-3xl font-bold ">Kalakarry</h1>
-            <p>explore artist and their work.</p>
+            <h1 className="text-3xl font-bold">Kalakarry</h1>
+            {cloud?.auth_token}
+            <p className="text-secondaryFont">explore artist and their work.</p>
             </div>
             <br/>
             <br/>
-            <div className=" text-white rounded-4xl w-full max-w-[450px] min-h-[50vh] p-8 flex flex-col items-center">  
+            <div className=" text-primaryFont rounded-4xl w-full max-w-[450px] min-h-[50vh] p-8 flex flex-col items-center">  
                 <Input label="Full Name" value={data.name} onChange={(e) => setData({...data, name: e.target.value})}/>
                 <br/>
                 <Input label="Email"
@@ -48,7 +51,7 @@ export default function RegisterPage() {
                 <Button onClick={()=> {
                     registerUser.mutate(data);
                 }}>Register</Button>
-                <p className="pt-3 text-gray-500">Already have an account? <Link className="text-white" href="">Login</Link></p>
+                <p className="pt-3 text-secondaryFont">Already have an account? <Link className="text-primaryFont font-medium" href="">Login</Link></p>
         </div>
         </div>
     )

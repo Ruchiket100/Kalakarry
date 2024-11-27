@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Poppins } from 'next/font/google'
 import { cookies } from "next/headers";
 import QueryProvider from "@/utils/queryProvider";
+import Providers from "@/utils/providers";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -34,16 +35,17 @@ export default async function RootLayout({
   const data = store.get("kalakarry-cookie")?.value;
   const parsedData = JSON.parse(decodeURIComponent(data || "{}"));
 
-  console.log(parsedData);
-
   return (
     <html lang="en">
       <head>
       </head>
       <body 
-        className={`${geistSans.variable} ${geistMono.variable} antialiased ${poppins.className}`}
-      ><QueryProvider>
+        className={`${poppins.className} bg-primary text-primaryFont max-w-[900px] mx-auto`}
+      >
+        <QueryProvider>
+        <Providers cloud={parsedData}>
         {children}
+        </Providers>
         </QueryProvider>
       </body>
     </html>
