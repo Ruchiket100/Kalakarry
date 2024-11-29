@@ -13,7 +13,6 @@ export default function Providers({ children, cloud }: { children: React.ReactNo
     
     useHydrateAtoms([[cloudAtom, cloud]]);
     
-    console.log(cloud, cloudStorage?.auth_token)
     return (
         <>
             {children}
