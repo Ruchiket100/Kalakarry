@@ -38,7 +38,7 @@ export default function RegisterPage() {
             <br/>
             <br/>
             <div className=" text-primaryFont rounded-4xl w-full max-w-[450px] min-h-[50vh] p-8 flex flex-col items-center">  
-                <Input label="Full Name" value={data.name} onChange={(e) => setData({...data, name: e.target.value})}/>
+                <Input label="Full Name herer" value={data.name} onChange={(e) => setData({...data, name: e.target.value})}/>
                 <br/>
                 <Input label="Email"
                 value={data.email} onChange={(e) => setData({...data, email: e.target.value})}
