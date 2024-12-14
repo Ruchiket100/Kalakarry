@@ -21,13 +21,12 @@ export default function RegisterPage() {
             return FETCH.auth.register(data);
         }
         ,
-        onSuccess: (data) => {
+        onSuccess: (d*ata) => {
             console.log(data);
             toast("User registered successfully");
             router.push(`/auth-login?token=${data.token}`);
         }
     })
-    console.log(cloud)
     return (
         <div className=" min-h-screen min-w-screen flex flex-col items-center justify-center">
             <div className="flex flex-col items-center gap-1">
