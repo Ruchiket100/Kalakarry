@@ -10,11 +10,15 @@ import { useEffect } from "react";
 
 export default function Providers({ children, cloud }: { children: React.ReactNode, cloud: any }) {
     const [cloudStorage, setCloud] = useAtom(cloudAtom)
+
     
     useHydrateAtoms([[cloudAtom, cloud]]);
+
+    console.log(cloudStorage)
     
     return (
         <>
+        <Provider>
             {children}
             <ToastContainer position="bottom-right"
                 autoClose={1000}
@@ -27,6 +31,7 @@ export default function Providers({ children, cloud }: { children: React.ReactNo
                 pauseOnHover
                 theme="light"
                  />
+                 </Provider>
         </>
     )
 }

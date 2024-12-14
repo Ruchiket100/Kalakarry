@@ -13,7 +13,7 @@ import { cloudAtom } from "@/utils/store";
 
 export default function RegisterPage() {
     const [data, setData] = useState({email:'', password:'', name:''});
-    const [ cloud, setCloud]= useAtom(cloudAtom)
+    const [cloud, setCloud]= useAtom(cloudAtom)
     const router =  useRouter();
 
     const registerUser  = useMutation({
@@ -21,12 +21,13 @@ export default function RegisterPage() {
             return FETCH.auth.register(data);
         }
         ,
-        onSuccess: (d*ata) => {
-            console.log(data);
+        onSuccess: (data) => {
+            console.log(data); 
             toast("User registered successfully");
             router.push(`/auth-login?token=${data.token}`);
         }
     })
+        console.log(cloud)
     return (
         <div className=" min-h-screen min-w-screen flex flex-col items-center justify-center">
             <div className="flex flex-col items-center gap-1">
