@@ -4,8 +4,9 @@ import "./globals.css";
 import 'react-toastify/dist/ReactToastify.css';
 import { Poppins } from 'next/font/google'
 import { cookies } from "next/headers";
-import QueryProvider from "@/utils/queryProvider";
 import Providers from "@/utils/providers";
+import { Provider } from "jotai";
+import Setup from "@/components/setup";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -38,15 +39,17 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <head>
+        <link href="https://cdn.jsdelivr.net/gh/Ruchiket100/fontawesome-pro@master/fontawesome-pro-6.5.1-web/css/all.css"  rel="stylesheet" type="text/css"  />
       </head>
       <body 
         className={`${poppins.className} bg-primary text-primaryFont max-w-[900px] mx-auto`}
       >
-        <QueryProvider>
+        <Provider>
         <Providers cloud={parsedData}>
         {children}
+        <Setup/>
         </Providers>
-        </QueryProvider>
+        </Provider>
       </body>
     </html>
   );

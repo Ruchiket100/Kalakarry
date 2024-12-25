@@ -1,4 +1,7 @@
+import { UserType } from '@/types/user';
 import { atom } from 'jotai'
 
-export const cloudAtom = atom<{auth_token? : string}>({});
+// TODO : set user type 
+
+export const cloudAtom = atom<{auth_token? : string, user?: UserType}>({});
 export const noAtom = atom(0)

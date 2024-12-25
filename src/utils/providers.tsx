@@ -5,20 +5,20 @@ import { createStore, Provider, useAtom } from "jotai";
 import { useHydrateAtoms } from 'jotai/utils'
 import { cloudAtom, noAtom } from "./store";
 import { useEffect } from "react";
+import QueryProvider from "./queryProvider";
+import AuthProvider from "./authProviders";
 
 
 
 export default function Providers({ children, cloud }: { children: React.ReactNode, cloud: any }) {
     const [cloudStorage, setCloud] = useAtom(cloudAtom)
-
     
     useHydrateAtoms([[cloudAtom, cloud]]);
 
-    console.log(cloudStorage)
-    
     return (
         <>
-        <Provider>
+        <QueryProvider>
+            <AuthProvider>
             {children}
             <ToastContainer position="bottom-right"
                 autoClose={1000}
@@ -31,7 +31,8 @@ export default function Providers({ children, cloud }: { children: React.ReactNo
                 pauseOnHover
                 theme="light"
                  />
-                 </Provider>
+                </AuthProvider>
+                </QueryProvider>
         </>
     )
 }

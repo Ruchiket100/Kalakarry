@@ -3,13 +3,48 @@ const request = async (
         url, 
         method = 'GET',
         data
-    }: {url: string, method: "GET" | "POST" | "PUT" | "DELETE", data: any}
+    }: {url: string, method: "GET" | "POST" | "PUT" | "DELETE", data?: any}
 )=> {
+    let decodedCloud = "";
+    // TODO: set cloud type
+    let cloud:any;
+    // cookie logic
+    if (typeof document !== "undefined") {
+        
+        decodedCloud = decodeURIComponent(
+            document.cookie
+                .split(";")
+                .find((c) =>
+                    c
+                        .trim()
+                        .startsWith("kalakarry-cookie" ),
+                )
+                ?.replace(
+                    "kalakarry-cookie" +
+                        "=",
+                    "",
+                ) || "{}",
+        );
+        cloud = JSON.parse(decodeURIComponent(decodedCloud));
+
+    }
+    else{
+        // if its working on server
+        const { cookies } = require("next/headers");
+        const cookieStore = await cookies();
+        const cookie = cookieStore.get("kalakarry-cookie");
+        decodedCloud = decodeURIComponent(cookie);
+        cloud = JSON.parse(decodedCloud)
+    }
+
+    const authToken = cloud?.auth_token;
+
     try{
     const response = await fetch("http://localhost:8080"+url, {
         method,
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'auth_token': authToken
         },
         body: JSON.stringify(data)
     })
@@ -42,7 +77,19 @@ export const  FETCH = {
                 method: 'POST',
                 data: {}
             })
+        },
+    },
+    myself: async () => {
+        return request({url: "/user/myself", method: "GET"})
+    },
+    user: {
+        myself: {
+            checkusername: async (username: string) => {
+                return request({url: "/user/myself/username/check", method: "POST", data: {username}})
+            },
+            username: async (username: string) => {
+                return request({url: "/user/myself/username", method: "PUT", data: {username}})
+            }
         }
     }
-    
 }

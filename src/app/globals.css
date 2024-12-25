@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.skeleton{
+    animation: skeleton-loading 1s linear infinte alternate
+}
+
+@keyframes skeleton-loading {
+    0%  {
+        background-color: hsl(200, 20%, 70%)
+    }
+    100% {
+        background-color: hsl(200, 20%, 95%)
+    }
+}
