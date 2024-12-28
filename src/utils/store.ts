@@ -4,4 +4,5 @@ import { atom } from 'jotai'
 // TODO : set user type 
 
 export const cloudAtom = atom<{auth_token? : string, user?: UserType}>({});
-export const noAtom = atom(0)
+export const headerDropdownAtom = atom(false);  
+export const noAtom = atom(0);

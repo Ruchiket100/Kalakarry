@@ -90,6 +90,7 @@ export const  FETCH = {
             username: async (username: string) => {
                 return request({url: "/user/myself/username", method: "PUT", data: {username}})
             }
-        }
+        },
+        get: (username: string) => request({url: `/user/${username}`, method: "GET"})
     }
 }
