@@ -33,11 +33,11 @@ const request = async (
         const { cookies } = require("next/headers");
         const cookieStore = await cookies();
         const cookie = cookieStore.get("kalakarry-cookie");
-        decodedCloud = decodeURIComponent(cookie);
-        cloud = JSON.parse(decodedCloud)
+        decodedCloud = decodeURIComponent(cookie.value);
+        cloud = JSON.parse(decodedCloud);
     }
 
-    const authToken = cloud?.auth_token;
+    const authToken = cloud?.auth_token;    
 
     try{
     const response = await fetch("http://localhost:8080"+url, {
@@ -91,6 +91,6 @@ export const  FETCH = {
                 return request({url: "/user/myself/username", method: "PUT", data: {username}})
             }
         },
-        get: (username: string) => request({url: `/user/${username}`, method: "GET"})
+        get: async (username: string) => {return request({url: `/user/${username}`, method: "GET"})}
     }
 }

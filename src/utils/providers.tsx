@@ -7,6 +7,7 @@ import { cloudAtom, noAtom } from "./store";
 import { useEffect } from "react";
 import QueryProvider from "./queryProvider";
 import AuthProvider from "./authProviders";
+import Setup from "@/components/setup";
 
 
 
@@ -20,6 +21,7 @@ export default function Providers({ children, cloud }: { children: React.ReactNo
         <QueryProvider>
             <AuthProvider>
             {children}
+            {cloudStorage?.user && <Setup/>}
             <ToastContainer position="bottom-right"
                 autoClose={1000}
                 hideProgressBar

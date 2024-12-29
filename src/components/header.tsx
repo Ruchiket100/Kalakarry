@@ -8,6 +8,8 @@ export default function Header(){
     const [cloud, setCloud] = useAtom(cloudAtom);
     const [headerDropdown, setHeaderDropdown] = useAtom(headerDropdownAtom);
     const router = useRouter();
+
+    console.log(cloud)
     
     const dropdownOptions = [
       {

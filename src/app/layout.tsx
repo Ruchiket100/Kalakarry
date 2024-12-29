@@ -47,7 +47,7 @@ export default async function RootLayout({
         <Provider>
         <Providers cloud={parsedData}>
         {children}
-        <Setup/>
+        
         </Providers>
         </Provider>
       </body>
