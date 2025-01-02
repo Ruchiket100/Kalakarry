@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 export default function Header(){
     const [cloud, setCloud] = useAtom(cloudAtom);
     const [headerDropdown, setHeaderDropdown] = useAtom(headerDropdownAtom);
+
     const router = useRouter();
 
     console.log(cloud)
@@ -49,6 +50,7 @@ export default function Header(){
           </div>
       ) : (
         <button>login</button>
+        
       )
      }
      <div className={`absolute rounded-2xl border border-gray-500/40 backdrop-blur-md overflow-hidden top-[calc(100%+15px)] right-0 flex flex-col w-[200px] transition-all duration-200 ${headerDropdown ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-full pointer-events-none"}`}>
