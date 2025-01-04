@@ -7,6 +7,8 @@ import { cookies } from "next/headers";
 import Providers from "@/utils/providers";
 import { Provider } from "jotai";
 import Setup from "@/components/setup";
+import Header from "@/components/header";
+import Overlay from "@/components/interactives/overlay";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -46,6 +48,8 @@ export default async function RootLayout({
       >
         <Provider>
         <Providers cloud={parsedData}>
+          <Overlay/>
+        <Header/>
         {children}
         
         </Providers>

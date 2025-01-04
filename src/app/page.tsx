@@ -11,7 +11,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-primary">
-     <Header/>
+     
      <i className="fad fa-sparkles" />
      </div>
   );
